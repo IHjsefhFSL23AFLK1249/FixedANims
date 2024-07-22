@@ -21,7 +21,7 @@ New = function(Object, Parent, Name, Data)
  local Mouse = Player:GetMouse()
  Character.Animate.Disabled = true
  Humanoid.Animator:Destroy()
- 
+ _G.Staff = NewPart(Vector3.new(8, 0.4, 0.4))
  local staff2_sim = Instance.new("Part", workspace)
  staff2_sim.Size = Vector3.new(8, 0.4, 0.4)
  staff2_sim.CanCollide = false
@@ -60,9 +60,9 @@ New = function(Object, Parent, Name, Data)
  Staffw.Part0 = Torso
  Staffw.Part1 = staff2_sim
  Staffw.Name = "StaffJoint"
- AddConnection(Connections, RunService.PostSimulation, function(DeltaTime)
+table.insert(getgenv().wizzard, game:GetService("RunService").Heartbeat:Connect(function()
 _G.Staff.CFrame = staff2_sim.CFrame
-end)
+end))
  local RootJoint = Instance.new("Weld",Character["HumanoidRootPart"])
  RootJoint.Name = "RootJ"
  RootJoint.Part0 = Character["HumanoidRootPart"]
