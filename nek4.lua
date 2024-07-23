@@ -1307,13 +1307,11 @@ function LoadLibrary(a)
    --\\=================================//
    
    function Swait(NUMBER)
-      if NUMBER == 0 or NUMBER == nil then
-         game:GetService("RunService").RenderStepped:wait()
-      else
-         for i = 1, NUMBER do
-            game:GetService("RunService").RenderStepped:wait()
-         end
-      end
+   if NUMBER then
+      task.wait(NUMBER)
+   else
+task.wait()
+   end
    end
    
    ---------------
@@ -2991,7 +2989,7 @@ function LoadLibrary(a)
    so("3051417237", Torso,3, .8)
    
    coroutine.resume(coroutine.create(function()	
-      for i = 1,2 do Swait(3)
+      for i = 1,2 do (3)
    so("3051417087", RightArm,3, math.random(100,155)/100) end
    end))
    for i =1,10,1 do 
@@ -3002,7 +3000,7 @@ function LoadLibrary(a)
    SetTween(RH,{C0=CFrame.new(.5, -1, 0)*angles(math.rad(-25),math.rad(0),math.rad(0))},"Quad","Out",0.2)
    SetTween(LH,{C0=CFrame.new(-.5, -1, 0)*angles(math.rad(25),math.rad(0),math.rad(0))},"Quad","Out",0.2)
    CFMagniDamage(RootPart.CFrame*CF(1.4,-0,-1+.17*i),9,10,15,10,"Knockdown")
-   Swait()
+   ()
    end
    
    
@@ -3019,7 +3017,7 @@ function LoadLibrary(a)
    SetTween(LW,{C0=CFrame.new(-1.5, 0.5, -.0)*angles(math.rad(0),math.rad(0),math.rad(0))},"Quad","Out",0.1)
    SetTween(RH,{C0=CFrame.new(.5, -1, 0)*angles(math.rad(0),math.rad(0),math.rad(0))},"Quad","InOut",0.1)
    SetTween(LH,{C0=CFrame.new(-.5, -1, 0)*angles(math.rad(0),math.rad(0),math.rad(0))},"Quad","InOut",0.1)
-   Swait(.1*30)
+   (.1*30)
    for i = 1,100,0.3 do	
       SetTween(RJW,{C0=RootCF*CFrame.new(-20.5*math.sin(i),20.5*math.cos(i),i/.5)*angles(math.rad(25-4.5*10*i),math.rad(0),math.rad(36*i*2))},"Quad","InOut",0.1)
    SetTween(NeckW,{C0=NeckCF*CFrame.new(0,0,0)*angles(math.rad(20),math.rad(0),math.rad(-80))},"Quad","InOut",0.15)
