@@ -1,4 +1,5 @@
-	local folder = game:GetObjects('rbxassetid://9206853840')[1]
+local RunService = game:GetService("RunService")
+local folder = game:GetObjects('rbxassetid://9206853840')[1]
 folder.Parent = Workspace
 local victim = folder.Victim
 folder.Victim.Parent = game.Players.LocalPlayer.Character
