@@ -1,112 +1,3 @@
-		-- [[ Reanimation ]] --
-    -- [[ Services ]] --
-    local TeleportService = game:GetService("TeleportService")
-    local RunService = game:GetService("RunService")
-    local Workspace = game:GetService("Workspace")
-    local Players = game:GetService("Players")
-
-    -- [[ Variables ]] --
-    local LocalPlayer = Players.LocalPlayer
-    local PartsFolder = Workspace.Terrain._Game.Folder
-
-    -- [[ Functions ]] --
-    local function Chat(Message)
-        Players:Chat(Message)
-    end
-    local function NewPart(Size, name)
-        Chat(("part/%f/%f/%f"):format(Size.X, Size.Y, Size.Z))
-local Part;
-        repeat
-            Part = PartsFolder.ChildAdded:Wait()
-        until Part and Part:IsA("BasePart") and Part.Size == Size
-        Part.CanCollide = false
-
-       task.spawn(function() 
-       for i = 0,7 do
-       Part.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-wait(.24)
-end
-end)
-if name then
-    Part.Name = name
-end
-        return Part
-    end
-    local function NewCharacter()
-
-    end
-    local function AddConnection(Table, Signal, Callback)
-        table.insert(Table, Signal:Connect(Callback))
-    end
-    local function SetCFrame(Part, CFrame)
-        if (Part and Part.ReceiveAge == 0) then
-            Part.CFrame = CFrame
-        end
-    end
-
-    -- [[ Main ]] --
-    local Connections = {}
-
-    local RealCharacter = LocalPlayer.Character
-    local FakeCharacter = {
-        Head = NewPart(Vector3.new(1, 1, 1)),
-        Torso = NewPart(Vector3.new(2, 2, 1)),
-        ["Right Arm"] = NewPart(Vector3.new(1, 2, 1)),
-        ["Left Arm"] = NewPart(Vector3.new(1, 2, 1)),
-        ["Right Leg"] = NewPart(Vector3.new(1, 2, 1)),
-        ["Left Leg"] = NewPart(Vector3.new(1, 2, 1))
-    }
-
-    AddConnection(Connections, RunService.PreSimulation, function(DeltaTime)
-        -- // Noclip
-        for Index, Descendant in ipairs(RealCharacter:GetDescendants()) do
-            if (Descendant:IsA("BasePart")) then
-                Descendant.CanCollide = false
-            end
-        end
-
-    end)
-    AddConnection(Connections, RunService.PostSimulation, function(DeltaTime)
-        for Name, Child in pairs(FakeCharacter) do
-            local RealPart = RealCharacter:FindFirstChild(Name)
-
-            if (RealPart) then
-                local LookVector = RealPart.CFrame.LookVector
-                Child.AssemblyLinearVelocity = Vector3.new(LookVector.X * 90, LookVector.Y * 90, LookVector.Z * 90)
-                Child.AssemblyAngularVelocity = Vector3.zero
-for i = 0,5 do
-                SetCFrame(Child, RealPart.CFrame)
-				task.wait()
-end
-            end
-        end
-    end)
-	getgenv().wizzard = {}
-    AddConnection(Connections, LocalPlayer.Chatted, function(Message)
-        if (Message == "/stop") then
-            for Index, Connection in ipairs(Connections) do
-                Connection:Disconnect()
-            end
-			pcall(function()
-				for i, v in ipairs(getgenv().wizzard) do
-					v:Disconnect()
-				end
-			end)
-
-            table.clear(Connections)
-            table.clear(FakeCharacter)
-			table.clear(getgenv().wizzard)
-
-            local Position = RealCharacter:GetPivot()
-            RealCharacter:BreakJoints()
-            Chat("respawn/me")
-            local Character = LocalPlayer.CharacterAdded:Wait()
-            Character:WaitForChild("Torso")
-            Character:PivotTo(Position)
-        end
-    end)
-
-    Chat("invis/me")
 New = function(Object, Parent, Name, Data)
     local Object = Instance.new(Object)
     for Index, Value in pairs(Data or {}) do
@@ -410,8 +301,9 @@ end))
        if LimbAccess.Weapon then
           Staffw.C0 = Lerp(Staffw.C0,CFrame.new(0,-.5,-1),.2)
           Staffw.C1 = Lerp(Staffw.C1,CFrame.new(0,.6,0)*CFrame.Angles(math.rad(90),math.rad(180),math.rad(-90)),.2)
-       end)
+       
        end	
+      end)
     elseif Vector3.new(Torso.Velocity.x,0,Torso.Velocity.z).magnitude > 2 and State == "Battle" then -- walk
        if LimbAccess.RJ then
           RootJoint.C0 = Lerp(RootJoint.C0,CFrame.new(-.2,.5+math.sin(angle2)*.1,0)*CFrame.Angles(0,math.rad(0),0),.2)
