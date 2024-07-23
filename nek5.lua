@@ -1113,7 +1113,6 @@ function LoadLibrary(a)
    local RbxUtility = LoadLibrary("RbxUtility")
    local Create = RbxUtility.Create
    
-   local script = game:GetObjects("rbxassetid://5277902239")[1]
    
    local Player = game.Players.LocalPlayer
    local mouse = Player:GetMouse()
@@ -1121,8 +1120,6 @@ function LoadLibrary(a)
    ZTfade=false 
    ZT=false
    
-   EffectPack = script.Extras:Clone()
-   script.Extras:Destroy()
    local agresive = false
    Target = Vector3.new()
    Character= Player.Character
