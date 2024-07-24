@@ -51,6 +51,13 @@ end
         ["Right Leg"] = NewPart(Vector3.new(1, 2, 1), "Right Leg"),
         ["Left Leg"] = NewPart(Vector3.new(1, 2, 1), "Left Leg"),
     }
+local function SetCFrame(Part, CFrame)
+task.spawn(function()
+    if (Part and Part.ReceiveAge == 0) then
+        Part.CFrame = CFrame
+    end
+end)
+end
 table.insert(getgenv().wizzard, RunService.Heartbeat:Connect(function()
         for Name, Child in pairs(FakeCharacter2) do
 			local RealPart;
