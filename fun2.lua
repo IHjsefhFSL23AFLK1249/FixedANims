@@ -51,7 +51,7 @@ end
         ["Right Leg"] = NewPart(Vector3.new(1, 2, 1), "Right Leg"),
         ["Left Leg"] = NewPart(Vector3.new(1, 2, 1), "Left Leg"),
     }
-    AddConnection(Connections, RunService.PostSimulation, function(DeltaTime)
+table.insert(getgenv().wizzard, RunService.Heartbeat:Connect(function()
         for Name, Child in pairs(FakeCharacter2) do
 			local RealPart;
 if fucku[Name] then
@@ -66,7 +66,7 @@ end
                 SetCFrame(Child, RealPart.CFrame)
             end
         end
-    end)
+    end))
 --// stuff from the serversided script \\--
 NewInstance = function(instance,parent,properties)
 	local inst = Instance.new(instance)
