@@ -46,7 +46,6 @@ stance = false
 local ff = 2
 noleg = false
 evadecooldown = false
-Humanoid.Animator.Parent = nil
 equip = false
 local Effects = {}
  attackspeed = 0.14 
