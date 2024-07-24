@@ -188,7 +188,7 @@ local dir = Vector3.new(RootPart.Velocity.x,0,RootPart.Velocity.z).unit
 		allowframeloss = false
 		tossremainder = false
 		lastframe = tick()
-		script.Heartbeat:Fire()
+		workspace.Heartbeat:Fire()
 		game:GetService("RunService").Heartbeat:connect(function(s, p)
 		    tf = tf + s
 		    if tf >= frame then
