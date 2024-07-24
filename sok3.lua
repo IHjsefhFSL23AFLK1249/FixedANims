@@ -179,10 +179,10 @@ local dir = Vector3.new(RootPart.Velocity.x,0,RootPart.Velocity.z).unit
 		        return weldd
 		    end
 		   
-		    ArtificialHB = Instance.new("BindableEvent", script)
+		    ArtificialHB = Instance.new("BindableEvent", workspace)
 		ArtificialHB.Name = "Heartbeat"
 		 
-		script:WaitForChild("Heartbeat")
+		workspace:WaitForChild("Heartbeat")
 		 
 		frame = 1 / 80
 		tf = 0
@@ -194,11 +194,11 @@ local dir = Vector3.new(RootPart.Velocity.x,0,RootPart.Velocity.z).unit
 		    tf = tf + s
 		    if tf >= frame then
 		        if allowframeloss then
-		            script.Heartbeat:Fire()
+		            workspace.Heartbeat:Fire()
 		            lastframe = tick()
 		        else
 		            for i = 1, math.floor(tf / frame) do
-		                script.Heartbeat:Fire()
+		                workspace.Heartbeat:Fire()
 		            end
 		            lastframe = tick()
 		        end
