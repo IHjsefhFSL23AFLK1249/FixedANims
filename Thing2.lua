@@ -2295,12 +2295,16 @@ function AttemptKissUwU()
 	end
 	if(hit and hit.Parent and hit.Parent:FindFirstChildOfClass'Humanoid' and GetTorso(hit.Parent))then
 		WalkSpeed = 0
+		lzz = true
 		Hum.AutoRotate = false
 		local owo = hit.Parent
 		local torso = GetTorso(owo)
 		local hum = owo:FindFirstChildOfClass'Humanoid'
 		local root = owo:FindFirstChild'HumanoidRootPart'
 		local rootWeld
+		spawn(function()
+		repeat wait() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = root.CFrame until lzz == false
+		end)
 		if(root)then 
 			rootWeld = (function()
 				for _,v in next, owo:GetDescendants() do
@@ -2366,6 +2370,7 @@ function AttemptKissUwU()
 		local pp = torso.CFrame
 		if(root)then root.Parent = owo if(rootWeld)then rootWeld[1].Parent = rootWeld[4] rootWeld[1].Part0 = rootWeld[2] rootWeld[1].Part1 = rootWeld[3] end end
 		GrabWeld:destroy()
+		lzz = false
 	end
 	
 	Attack = false
